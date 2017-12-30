@@ -148,9 +148,11 @@ var $ = jQuery;
 					count = parseInt(count) - 1;
 					console.log(count);
 					if(count == 0){
+						$( ".myCount" ).text("0"+count);
 						window.location.href = "https://www.pistalix.in/";
+					}else{
+						$( ".myCount" ).text("0"+count);
 					}
-					$( ".myCount" ).text("0"+count);
 				}, 1100);
 		}
 		myFunction();
