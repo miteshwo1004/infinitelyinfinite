@@ -38,7 +38,7 @@ var $ = jQuery;
 			$('body').addClass('touch');
 
 			// Add div for vertical align middle
-			
+
 			setTimeout(function(){
 				$('.section-wrap').each(function(){
 					$(this).after('<div class="scrollSpy"></div>');
@@ -59,9 +59,9 @@ var $ = jQuery;
 					}
 				});
 			},0);
-			
 
-			// Swipe Slider 
+
+			// Swipe Slider
 			$('.sections:nth-child(1)').addClass('active');
 
 			$.fn.swiper();
@@ -126,7 +126,7 @@ var $ = jQuery;
 						},200);
 						// Init function for scroll down on click button
 						toDownButton();
-						
+
 					},
 					onLeave: function() {
 						setTimeout(function(){
@@ -134,7 +134,7 @@ var $ = jQuery;
 						},0);
 					}
 				});
-				
+
 				contentHeight();
 			}
 		}
@@ -142,13 +142,34 @@ var $ = jQuery;
 		/*-----------------------------------------------------*/
 		/*----------------------- Timer -----------------------*/
 		/*-----------------------------------------------------*/
-
+		function myFunction() {
+		    setInterval(function(){
+					var count = $( "#countTime" ).text();
+					count = parseInt(count) - 1;
+					console.log(count);
+					if(count == 0){
+						window.location.href = "https://www.pistalix.in/";
+					}
+					$( ".myCount" ).text("0"+count);
+				}, 1100);
+		}
+		myFunction();
 		$('.fadein').fadeIn(500);
 
 		if ( $(".glitch-time").length ) {
-			$(".glitch-time").countdown({
-				date: "13 march 2015 9:00:00"
-			});
+			var todayd = new Date();
+			var monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+			var month = monthNames[todayd.getMonth()];
+			var date = todayd.getDate();
+			var year = todayd.getFullYear();
+			var getHours = todayd.getHours();
+			var getMinutes = todayd.getMinutes();
+			var getSeconds = todayd.getSeconds();
+			getSeconds = parseInt(getSeconds)+1
+			var liftoffTime = date+" "+month+" "+year+" "+getHours+":"+getMinutes+":"+getSeconds;
+			console.log(liftoffTime);
+			// $(".glitch-time").countdown();
+			// $('.glitch-time').countdown({until: liftoffTime, format: 'yowHMS'});
 		}
 
 		/*-----------------------------------------------------*/
@@ -252,10 +273,10 @@ var $ = jQuery;
 				}
 
 				$('#contactform').validator('validate');
-				
+
 				var $this = $(this),
 						bodyElem = $('body');
-					
+
 				$.ajax({
 					url  : 'php/contact.php',
 					type : 'POST',
@@ -273,11 +294,11 @@ var $ = jQuery;
 						} else {
 							$this.addClass('error');
 						}
-						
+
 						$this.delay(500).queue(function(){
 							$this.removeClass('loaded').removeClass('loading').dequeue();
 						});
-						
+
 						$this.delay(400).queue(function(){
 							if ($(data).is('.send-true')){
 								$this.removeClass('success').closest('#contactform').trigger('reset');
@@ -302,7 +323,7 @@ var $ = jQuery;
 				}
 
 				$('.under-construction').validator('validate');
-			
+
 				$.ajax({
 					url  : 'php/u-c.php',
 					type : 'POST',
@@ -312,7 +333,7 @@ var $ = jQuery;
 					},
 					success : function(data){
 						$('body').removeClass('form-load');
-						
+
 						if ($(data).is('.send-true')){
 							$this.addClass('loading').delay(650).queue(function(){
 								$this.addClass('success').addClass('loaded').dequeue();
@@ -320,11 +341,11 @@ var $ = jQuery;
 						} else {
 							$this.addClass('error');
 						}
-						
+
 						$this.delay(500).queue(function(){
 							$this.removeClass('loaded').removeClass('loading').dequeue();
 						});
-						
+
 						$this.delay(400).queue(function(){
 							if ($(data).is('.send-true')){
 								$this.removeClass('success').closest('.under-construction').trigger('reset');
@@ -335,10 +356,10 @@ var $ = jQuery;
 						});
 					}
 				});
-				
+
 				return false;
 			});
-			
+
 			if($(".mailchimp").length>0) {
 				$('.mailchimp').ajaxChimp({
 					url: 'http://us10.list-manage.com/subscribe/post?u=69007f000c70b89e124b9308d&amp;id=1225ba8aee'
@@ -388,7 +409,7 @@ var $ = jQuery;
 				contactWrapper.removeClass('open');
 			});
 			if ( $('body').width() <= 767 ) {
-				$('.map-canvas').height( $('.contact-form').outerHeight() ) 
+				$('.map-canvas').height( $('.contact-form').outerHeight() )
 			}
 		}
 
@@ -396,7 +417,7 @@ var $ = jQuery;
 		/*----------- Circle Skill -----------*/
 		/*------------------------------------*/
 
-		
+
 		var vis = true;
 
 		$('.circle-skill').on('inview', function(event, visible) {
@@ -416,15 +437,15 @@ var $ = jQuery;
 
 			if( 'devicePixelRatio' in window && window.devicePixelRatio == 2 ){
 
-				var imgToReplace = $('img.replace-2x').get();	
+				var imgToReplace = $('img.replace-2x').get();
 			    for (var i=0,l=imgToReplace.length; i<l; i++) {
 		    		var src = imgToReplace[i].src;
 			      	src = src.replace(/\.(png|jpg|gif)+$/i, '@2x.$1');
 			      	imgToReplace[i].src = src;
 			      	$(imgToReplace[i]).load(function(){
 						$(this).addClass('loaded');
-					});	      	
-			    };	    
+					});
+			    };
 
 			    var imgToReplaceM = $('a.replace-2x').get();
 			    for (var i=0,l=imgToReplaceM.length; i<l; i++) {
@@ -433,7 +454,7 @@ var $ = jQuery;
 			      	imgToReplaceM[i].href = src;
 			      	$(imgToReplaceM[i]).addClass('loaded');
 			    };
-			 	
+
 			 	$('img').each(function(){
 					var item = $(this);
 			 		var retinaSrc = $(this).attr('data-retina-src');
@@ -475,16 +496,3 @@ var $ = jQuery;
 		}
 	});
 })(jQuery);
-
-
-
-
-
-
-
-
-
-
-
-
-
