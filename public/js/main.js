@@ -148,10 +148,13 @@ var $ = jQuery;
 					count = parseInt(count) - 1;
 					console.log(count);
 					if(count == 0){
-						$( ".myCount" ).text("0"+count);
+						$( ".myCount" ).text(count);
+						clearInterval(myFunction);
 						window.location.href = "https://www.pistalix.in/";
-					}else{
-						$( ".myCount" ).text("0"+count);
+					}else {
+						if(count < 0){}else{
+							$( ".myCount" ).text(count);
+						}
 					}
 				}, 1100);
 		}
